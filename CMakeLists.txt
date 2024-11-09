@@ -127,14 +127,14 @@ if (REFLECTCPP_XML)
      message(STATUS "Building with xml")
 endif ()
 
-if (REFLECTCPP_YAML)
+#if (REFLECTCPP_YAML)
     list(APPEND REFLECT_CPP_SOURCES
         src/reflectcpp_yaml.cpp
     )
     find_package(yaml-cpp CONFIG REQUIRED)
-    target_link_libraries(reflectcpp INTERFACE yaml-cpp::yaml-cpp)
+    target_link_libraries(reflectcpp PUBLIC yaml-cpp::yaml-cpp)
     message(STATUS "Building with yaml")
-endif ()
+#endif ()
 
 set_target_properties(reflectcpp PROPERTIES LINKER_LANGUAGE CXX)
 target_sources(reflectcpp PRIVATE ${REFLECT_CPP_SOURCES})
