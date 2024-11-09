@@ -1,7 +1,7 @@
 #ifndef RFL_CBOR_WRITE_HPP_
 #define RFL_CBOR_WRITE_HPP_
 
-#include <cbor.h>
+#include <tinycbor/cbor.h>
 
 #include <bit>
 #include <cstdint>
