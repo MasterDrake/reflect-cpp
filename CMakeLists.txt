@@ -14,7 +14,7 @@ option(REFLECTCPP_YAML "Enable YAML support" ON)
 option(REFLECTCPP_BUILD_BENCHMARKS "Build benchmarks" OFF)
 option(REFLECTCPP_BUILD_TESTS "Build tests" OFF)
 
-option(REFLECTCPP_USE_BUNDLED_DEPENDENCIES "Use the bundled dependencies" OFF)
+option(REFLECTCPP_USE_BUNDLED_DEPENDENCIES "Use the bundled dependencies" ON)
 
 set(REFLECTCPP_USE_VCPKG_DEFAULT OFF)
 if(REFLECTCPP_BUILD_BENCHMARKS)
@@ -61,23 +61,13 @@ if (REFLECTCPP_USE_BUNDLED_DEPENDENCIES)
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/rfl/thirdparty>)
 else ()
     find_package(ctre CONFIG REQUIRED)
-    target_link_libraries(reflectcpp INTERFACE ctre)
+    target_link_libraries(reflectcpp INTERFACE ctre::ctre)
 endif ()
 
 if (REFLECTCPP_JSON)
     list(APPEND REFLECT_CPP_SOURCES
         src/reflectcpp_json.cpp
     )
-    if (REFLECTCPP_USE_BUNDLED_DEPENDENCIES)
-        list(APPEND REFLECT_CPP_SOURCES
-            src/yyjson.c
-        )
-        set_source_files_properties(src/yyjson.c PROPERTIES LANGUAGE CXX)
-
-        target_include_directories(
-            reflectcpp PUBLIC
-            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/rfl/thirdparty>)
-    else ()
         find_package(yyjson CONFIG REQUIRED)
         target_link_libraries(reflectcpp INTERFACE yyjson::yyjson)
     endif ()
