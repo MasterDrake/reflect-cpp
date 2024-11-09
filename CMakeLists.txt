@@ -14,7 +14,7 @@ option(REFLECTCPP_YAML "Enable YAML support" ON)
 option(REFLECTCPP_BUILD_BENCHMARKS "Build benchmarks" OFF)
 option(REFLECTCPP_BUILD_TESTS "Build tests" OFF)
 
-option(REFLECTCPP_USE_BUNDLED_DEPENDENCIES "Use the bundled dependencies" ON)
+option(REFLECTCPP_USE_BUNDLED_DEPENDENCIES "Use the bundled dependencies" OFF)
 
 set(REFLECTCPP_USE_VCPKG_DEFAULT OFF)
 if(REFLECTCPP_BUILD_BENCHMARKS)
