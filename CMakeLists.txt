@@ -161,6 +161,7 @@ if (REFLECTCPP_YAML)
     )
     find_package(yaml-cpp CONFIG REQUIRED)
     target_link_libraries(reflectcpp INTERFACE yaml-cpp::yaml-cpp)
+    message("Building with yaml")
 endif ()
 
 set_target_properties(reflectcpp PROPERTIES LINKER_LANGUAGE CXX)
