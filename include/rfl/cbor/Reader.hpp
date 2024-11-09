@@ -1,7 +1,7 @@
 #ifndef RFL_CBOR_READER_HPP_
 #define RFL_CBOR_READER_HPP_
 
-#include <cbor.h>
+#include <tinycbor/cbor.h>
 
 #include <cstddef>
 #include <exception>
