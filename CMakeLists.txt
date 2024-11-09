@@ -27,18 +27,6 @@ if(REFLECTCPP_BUILD_BENCHMARKS)
     set(REFLECTCPP_TOML ON CACHE BOOL "" FORCE)
     set(REFLECTCPP_YAML ON CACHE BOOL "" FORCE)
 endif()
-if (REFLECTCPP_BUILD_TESTS OR REFLECTCPP_BUILD_BENCHMARKS OR
-    (REFLECTCPP_JSON AND NOT REFLECTCPP_USE_BUNDLED_DEPENDENCIES) OR
-    REFLECTCPP_BSON OR REFLECTCPP_CBOR OR REFLECTCPP_FLEXBUFFERS OR REFLECTCPP_MSGPACK OR REFLECTCPP_XML OR REFLECTCPP_TOML OR REFLECTCPP_YAML)
-    # enable vcpkg per default if require features other than JSON
-    set(REFLECTCPP_USE_VCPKG_DEFAULT ON)
-endif()
-
-option(REFLECTCPP_USE_VCPKG "Use VCPKG to download and build dependencies" ${REFLECTCPP_USE_VCPKG_DEFAULT})
-
-if (REFLECTCPP_USE_VCPKG)
-    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake CACHE STRING "Vcpkg toolchain file")
-endif ()
 
 project(reflectcpp LANGUAGES CXX)
 
@@ -73,7 +61,7 @@ if (REFLECTCPP_USE_BUNDLED_DEPENDENCIES)
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/rfl/thirdparty>)
 else ()
     find_package(ctre CONFIG REQUIRED)
-    target_link_libraries(reflectcpp INTERFACE ctre::ctre)
+    target_link_libraries(reflectcpp INTERFACE ctre)
 endif ()
 
 if (REFLECTCPP_JSON)
